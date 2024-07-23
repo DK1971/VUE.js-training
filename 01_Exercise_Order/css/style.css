@@ -1,0 +1,51 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 50px;
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #fff;
+}
+
+li {
+  padding: 0;
+  margin-bottom:  10px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+.app {
+  padding: 15px;
+}
+
+.btn {
+  padding: 10px 14px;
+  border: 1px solid grey;
+  border-radius: 15px;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all .3s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(-100px);
+}

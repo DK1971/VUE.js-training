@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order</title>
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app" class="app">
+    <form v-on:submit="addProduct">
+      <input v-model="title" type="text" placeholder="Название товара">
+      <input v-model="price" type="number" placeholder="Стоимость">
+      <input v-model="count" type="number" placeholder="Количество">
+      <button>Добавить товар</button>
+    </form>
+    <ol>
+      <transition-group name="list">
+        <li v-for="product in sortOrder" :key="product.id">
+          <b>{{ product.title }}</b>,
+          Стоимость: <b>{{ product.price }}</b>,
+          Количество:<b>{{ product.count }}</b>
+        </li>
+      </transition-group>
+    </ol>
+    <div v-if="totalPrice > 0" class="total">
+      Стоимость покупки: <b>{{ totalPrice }}</b>
+    </div>
+    
+  </div>
+  
+  <script defer src="js/main.js"></script>
+</body>
+</html>
