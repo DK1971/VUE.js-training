@@ -1,79 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+ --font: "Karla", sans-serif;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+ --accent: #12C0DD;
+ --accent-rgb: 18, 192, 221;
+ --light: #FFFFFF;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+ --border-radius: 10px;
+ --width-line: 2px;
+ --tr: .3s;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+ margin: 0;
+ padding: 0;
 }
-a:hover {
-  color: #535bf2;
+
+body, html {
+ height: 100vh;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+ font-family: var(--font);
+ height: 100%;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.card {
-  padding: 2em;
+input, button {
+ font-family: var(--font);
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+ height: 100%;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/*  */
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: grid;
+  grid-template-columns: 1fr 100px 200px;
+  gap: 20px;
+  box-sizing: border-box;
+ }
+ 
+ .card {
+  background-color: var(--light);
+  border-radius: var(--border-radius);
+  padding: 20px 30px;
+  box-sizing: border-box;
+ }
+ 
+ .weather-form {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+ }
+
+/*  стилизуем блок с контентом */
+.weather {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+ }
+ 
+ .weather-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+ }
+ 
+ .weather-bg > div {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+ }
+
+ /* Основные стили для изображений */
+ .weather-bg__img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  opacity: 0;
+  transition: var(--tr) ease-in-out;
+ }
+
+ /* Стиль для основного фона */
+ .weather .weather-bg__img.bg {
+  opacity: 1;
+ }
+
+ /* Стиль для разных типов погоды */
+ .weather.sunny .weather-bg__img:not(.sunny) {
+  opacity: 0;
+ }
+ 
+ .weather.sunny .weather-bg__img.sunny {
+  opacity: 1;
+ }
+
+ /*  */
+ .weather-form__input {
+  flex-grow: 1;
+  font-size: 20px;
+  border: var(--width-line) solid rgba(var(--accent-rgb), .3);
+  border-radius: var(--border-radius);
+  padding: 10px 15px;
+  box-sizing: border-box;
+  transition: var(--tr);
+ }
+ 
+ .weather-form__input:focus {
+  outline: none;
+  border-color: var(--accent);
+ }
+ 
+ .weather-form__btn {
+  flex-basis: 180px;
+  font-size: 20px;
+  background-color: rgba(var(--accent-rgb), .3);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 10px 15px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: var(--tr);
+ }
+ 
+ .weather-form__btn:hover {
+  background-color: var(--accent);
+ }
+
+ .weather-form,
+.weather-load,
+.weather-info {
+ grid-column: 1 / 4;
+}
+
+.weather-load {
+ display: flex;
+ align-items: center;
+ height: 87px;
+}
+
+.weather-info__text {
+ display: grid;
+ grid-template-columns: 1fr auto auto;
+ gap: 20px;
+ font-size: 40px;
 }
